@@ -7,7 +7,7 @@ Questo progetto non si limita a lanciare un attacco, ma costruisce un ambiente i
 ## 📐 Architettura
 L'infrastruttura è progettata seguendo il **AWS Well-Architected Framework**:
 
-<img width="1073" height="745" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/d7824cb0-3335-450b-a853-5e3abac90718" />
+<img width="1073" height="745" alt="Architecture_Diagram" src="https://github.com/user-attachments/assets/af49bd1e-ee19-451d-b8ed-e8495d8455e3" />
 
 1.  **Ingress Sicuro:** Traffico gestito da un **Application Load Balancer (ALB)** protetto da **AWS WAF**.
 2.  **Isolamento:** L'istanza EC2 di attacco risiede in una **Private Subnet**. Nessun accesso diretto da Internet.
