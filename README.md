@@ -12,13 +12,13 @@ L'infrastruttura è progettata seguendo il **AWS Well-Architected Framework**:
 
 <img width="1073" height="745" alt="Architecture_Diagram" src="https://github.com/user-attachments/assets/ca18dbf9-e4cb-40ba-8d45-e744ff861ef1" />
 
-## 🔒 Caratteristiche di Sicurezza Implementate
+## 🛡️ Caratteristiche di Sicurezza
 
-* **Ingress Sicuro:** Traffico gestito da un **Application Load Balancer (ALB)** protetto da **AWS WAF** (Web Application Firewall) per bloccare bot e scanner.
-* **Isolamento:** L'istanza EC2 di attacco risiede in una **Private Subnet**. Nessun accesso diretto da Internet.
-* **Gestione Stealth:** Nessuna porta SSH (22) aperta. L'amministrazione avviene via **AWS Systems Manager (Session Manager)** tramite tunnel crittografato.
-* **Sicurezza Dati:** Volumi EBS crittografati con chiavi **KMS** gestite dal cliente.
-* **Monitoraggio:** **Amazon GuardDuty** attivo per rilevare minacce e intrusioni in tempo reale.
+* **WAF & ALB:** Filtraggio traffico Web per bloccare bot e scanner automatizzati.
+* **Private Networking:** Server isolato in subnet privata (Invisibile da Internet).
+* **Zero SSH:** Porta 22 chiusa. Accesso amministrativo sicuro tramite AWS Systems Manager.
+* **Encryption:** Dischi cifrati a riposo con chiavi KMS gestite dal cliente.
+* **Monitoraggio:** **Amazon GuardDuty** (Intrusion Detection) e **AWS Inspector** (Vulnerability Scanning) attivi per la massima visibilità.
 
 ---
 
@@ -28,8 +28,8 @@ L'infrastruttura è progettata seguendo il **AWS Well-Architected Framework**:
 * **Networking (VPC Segmentata):**
     * *Public Subnet:* Solo per il Load Balancer (ALB).
     * *Private Subnet:* L'istanza di attacco (Server) è isolata da Internet.
-* **Software:** Python Flask (Payload simulato) & Docker.
-* **AWS Services:** VPC, EC2, IAM, KMS, ALB, WAF, Systems Manager, GuardDuty.
+* **Software:** Python Flask (Payload simulato).
+* **AWS Services:** VPC, EC2, IAM, KMS, ALB, WAF, Systems Manager, GuardDuty, Inspector.
 
 ---
 
@@ -39,7 +39,7 @@ Il codice definisce l'intera architettura. Sintesi del template CloudFormation (
 <img width="1909" height="1030" alt="infra_cdk_synth png" src="https://github.com/user-attachments/assets/1130033a-37ce-47df-9221-280be88a1e92" />
 
 ### B. La Trappola (Phishing Page PoC)
-Simulazione del payload lato vittima: una pagina di login clone (Google Workspace) pixel-perfect ospitata localmente.
+Simulazione del payload lato vittima: una pagina di login clone (Google Workspace) pixel-perfect ospitata localmente, all'indirizzo: http://127.0.0.1:5000.
 
 <img width="1909" height="882" alt="poc_phishing_page png" src="https://github.com/user-attachments/assets/abf83fbb-9715-462c-ab00-b0477ee049b2" />
 
@@ -55,7 +55,7 @@ Dimostrazione del backend: le credenziali inserite dalla vittima vengono interce
 ### Prerequisiti
 * AWS CLI configurata
 * Node.js & AWS CDK installati
-* Python 3.11 & Docker
+* Python 3.11
 
 ### 1. Deploy Infrastruttura
 ```bash
@@ -68,7 +68,8 @@ pip install -r requirements.txt
 # Sintesi del template (Test)
 cdk synth
 
-## 2. Esecuzione Simulazione (Locale)
+### 2. Esecuzione Simulazione (Locale)
+```bash
                   # Avvio del server di phishing simulato
                    python demo_attack.py
 
