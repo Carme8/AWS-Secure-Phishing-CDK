@@ -28,7 +28,8 @@ L'infrastruttura è progettata seguendo il **AWS Well-Architected Framework**:
 * **Networking (VPC Segmentata):**
     * *Public Subnet:* Solo per il Load Balancer (ALB).
     * *Private Subnet:* L'istanza di attacco (Server) è isolata da Internet.
-* **Software:** Python Flask (Payload simulato).
+* **Software & Tooling:** * **Python Flask:** Utilizzato per lo sviluppo del PoC e i test di simulazione locale.
+    * **Docker:** Implementato nello stack IaC per il deploy containerizzato di GoPhish su istanza EC2.
 * **AWS Services:** VPC, EC2, IAM, KMS, ALB, WAF, Systems Manager, GuardDuty, Inspector.
 
 ---
@@ -50,12 +51,12 @@ Dimostrazione del backend: le credenziali inserite dalla vittima vengono interce
 
 ---
 
-# 🚀 Guida Rapida
+## 🚀 Guida Rapida
 
 ### Prerequisiti
 * AWS CLI configurata
 * Node.js & AWS CDK installati
-* Python 3.11
+* Python 3.11 + Docker
 
 ### 1. Deploy Infrastruttura
 ```bash
@@ -67,9 +68,9 @@ pip install -r requirements.txt
 
 # Sintesi del template (Test)
 cdk synth
-
+```
 ### 2. Esecuzione Simulazione (Locale)
-```bash
+
                   # Avvio del server di phishing simulato
                    python demo_attack.py
                    
