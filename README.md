@@ -1,30 +1,32 @@
-# ☁️AWS Secure Phishing Infrastructure (IaC with Python CDK)
+# ☁️ AWS Secure Phishing Infrastructure (IaC with Python CDK)
 
-## 📋 Overview
-Un'infrastruttura **Cloud-Native su AWS** completamente automatizzata tramite il codice **(IaC)** utilizzando **AWS CDK (Python)**, progettata per simulazioni di campagne di Phishing etico utilizzando **GoPhish**. 
+## 📋 Project Overview
+Un'infrastruttura **Cloud-Native su AWS** completamente automatizzata tramite codice **(IaC)** utilizzando **AWS CDK (Python)**, progettata per simulazioni di campagne di Phishing etico.
+
 Questo progetto non si limita a lanciare un attacco, ma costruisce un ambiente isolato seguendo le **Best Practices di sicurezza AWS** e della **Defense in Depth**: crittografia, segmentazione di rete e monitoraggio attivo.
+
+---
 
 ## 📐 Architettura
 L'infrastruttura è progettata seguendo il **AWS Well-Architected Framework**:
 
-<img width="1073" height="745" alt="Architecture_Diagram" src="https://github.com/user-attachments/assets/af49bd1e-ee19-451d-b8ed-e8495d8455e3" />
+<img width="1073" height="745" alt="Architecture_Diagram" src="https://github.com/user-attachments/assets/5af9c44a-12e6-4403-8ffa-07a4321d74b0" />
 
-1.  **Ingress Sicuro:** Traffico gestito da un **Application Load Balancer (ALB)** protetto da **AWS WAF**.
-2.  **Isolamento:** L'istanza EC2 di attacco risiede in una **Private Subnet**. Nessun accesso diretto da Internet.
-3.  **Gestione Stealth:** Nessuna porta SSH (22) aperta. L'amministrazione avviene via **AWS Systems Manager (Session Manager)** tramite tunnel crittografato.
-4.  **Sicurezza Dati:** Volumi EBS crittografati con chiavi **KMS** gestite dal cliente.
-5.  **Monitoraggio:** **Amazon GuardDuty** e **AWS Inspector** attivi per rilevare minacce e vulnerabilità in tempo reale.
+**Caratteristiche di Sicurezza Implementate**
 
-## 🛠️ Stack Tecnologico
-* **IaC:** AWS CDK Python 3.11
-* **Software:** GoPhish (Campaign Management) & Custom Flask Payload
-* **Containerization:** Docker (running GoPhish)
-* **AWS Services:** VPC, EC2, IAM, KMS, ALB, WAF, Systems Manager.
+**Ingress Sicuro:** Traffico gestito da un Application Load Balancer (ALB) protetto da AWS WAF (Web Application Firewall) per bloccare bot e scanner.
 
-## 🚀 Guida Rapida
+**Isolamento:** L'istanza EC2 di attacco risiede in una Private Subnet. Nessun accesso diretto da Internet.
 
-### Prerequisiti
-* AWS CLI configurata
-* Node.js & AWS CDK installati
-* Python 3.11 & Docker
+**Gestione Stealth:** Nessuna porta SSH (22) aperta. L'amministrazione avviene via AWS Systems Manager (Session Manager) tramite tunnel crittografato.
 
+**Sicurezza Dati:** Volumi EBS crittografati con chiavi KMS gestite dal cliente.
+
+**Monitoraggio:** Amazon GuardDuty attivo per rilevare minacce e intrusioni in tempo reale.
+
+
+
+
+
+
+> **⚠️ DISCLAIMER:** Questo progetto è stato sviluppato esclusivamente a scopo educativo e di ricerca etica (Red Teaming / Awareness Training). L'autore non si assume alcuna responsabilità per l'uso improprio del codice. L'obiettivo è dimostrare come blindare un'infrastruttura offensiva utilizzando AWS CDK e Best Practices di sicurezza.
