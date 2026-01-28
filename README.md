@@ -72,6 +72,5 @@ cdk synth
 ```bash
                   # Avvio del server di phishing simulato
                    python demo_attack.py
-
                    
 > **⚠️ DISCLAIMER:** Questo progetto è stato sviluppato esclusivamente a scopo educativo e di ricerca etica (Red Teaming / Awareness Training). L'autore non si assume alcuna responsabilità per l'uso improprio del codice. L'obiettivo è dimostrare come blindare un'infrastruttura offensiva utilizzando AWS CDK e Best Practices di sicurezza.
